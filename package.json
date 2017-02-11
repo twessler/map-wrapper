@@ -1,0 +1,16 @@
+{
+  "name": "map-wrapper",
+  "version": "1.0.0",
+  "description": "Google Map Api Wrapper for awesomeness",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://btrott@bitbucket.org/btrott/map-wrapper.git"
+  },
+  "author": "Brad/Trey",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/btrott/map-wrapper#readme"
+}
