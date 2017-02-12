@@ -4,7 +4,8 @@
   "description": "Google Map Api Wrapper for awesomeness",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --config webpack.config.js",
+    "test": "webpack-dev-server --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -12,5 +13,20 @@
   },
   "author": "Brad/Trey",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/btrott/map-wrapper#readme"
+  "homepage": "https://bitbucket.org/btrott/map-wrapper#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "stylelint-config-standard": "^16.0.0",
+    "stylelint-webpack-plugin": "^0.5.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  }
 }
