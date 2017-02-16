@@ -1,0 +1,4 @@
+set softtabstop=0
+set noexpandtab!
+set listchars=tab:\ \ 
+hi SpecialKey term=bold cterm=bold ctermbg=0
