@@ -1,19 +1,21 @@
 import _ from "lodash";
 
-const allowedKeys = [
-	"center",
-	"zoom",
-	"bounds",
-	"heading",
-	"mapTypeId",
-	"projection",
-	"streetView",
-	"tilt"
-];
-
 export default class MapState {
 	constructor(stateHash) {
 		_.forIn(MapState.filterKeys(stateHash), (value, key) => { this[key] = value; });
+	}
+
+	static get ALLOWED_KEYS() {
+		return [
+			"center",
+			"zoom",
+			"bounds",
+			"heading",
+			"mapTypeId",
+			"projection",
+			"streetView",
+			"tilt"
+		];
 	}
 
 	/**
@@ -54,6 +56,6 @@ export default class MapState {
 	}
 
 	static filterKeys(stateHash) {
-		return _.omit(_.pick(_.cloneDeep(stateHash), allowedKeys), _.isNull);
+		return _.omit(_.pick(_.cloneDeep(stateHash), MapState.ALLOWED_KEYS), _.isNull);
 	}
 }
