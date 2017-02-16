@@ -30,6 +30,8 @@ module.exports = {
 							quotes: ["error", "double", { "allowTemplateLiterals": true }],
 							"linebreak-style": "off",
                             "no-tabs": "off",
+                            "max-len": "off",
+                            "no-trailing-spaces": "off",
                             indent: ["error", "tab"]
 						}
 					}

@@ -15,7 +15,8 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/btrott/map-wrapper#readme",
   "dependencies": {
-    "bluebird": "^3.4.7"
+    "bluebird": "^3.4.7",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
