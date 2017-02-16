@@ -21,7 +21,7 @@ class MapsWrapper {
 				this.mapState.center = results[0].geometry.location;
 				// this.transition();
 			} else {
-				console.log(`Geocode was not successful for the following reason: ${status}`);
+				// console.log(`Geocode was not successful for the following reason: ${status}`);
 			}
 		});
 	}

@@ -32,6 +32,18 @@ export default class MapWorker {
 				script.onload = () => {
 					const el = global.document.getElementById(this.mapId);
 					this.map = new global.google.maps.Map(el, this.mapState);
+
+					const s1 = new MapState({ zoom: 5 });
+					const s2 = new MapState({ zoom: 5, tilt: 1 });
+					const s3 = new MapState({ tilt: 2, center: { lat: 100, lng: 100 } });
+					const s4 = new MapState({ center: { lat: 100, lng: 100 } });
+					console.log(MapState.updated(s1, s2));
+					console.log(MapState.updated(s1, s3));
+					console.log(MapState.updated(s1, s4));
+					console.log(MapState.updated(s2, s3));
+					console.log(MapState.updated(s2, s4));
+					console.log(MapState.updated(s3, s4));
+
 					resolve();
 				};
 				global.document.body.appendChild(script);
@@ -44,53 +56,34 @@ export default class MapWorker {
 	}
 
 	/**
-	 *	Compare new desired state to current state of google map, and execute on differences.
+	 * Compare new desired state to current state of google map, and execute on differences.
 	 *
 	 * @param  {Object}	new desired state of google map
 	 * @return {void}
 	 */
-	updateMap(newState) {
+	updateMapREMOVE(newState) {
 		const me = this;
 
 		function processUpdate() {
 			return new Promise((resolve, reject) => {
 				me.priorState = me.getMapState();
 				me.mapState = _.extend(_.cloneDeep(me.priorState), newState);
+
 				try {
 					if (me.priorState.center !== me.mapState.center) me.map.setCenter(me.mapState.center);
 					if (me.priorState.zoom !== me.mapState.zoom) me.map.setZoom(me.mapState.zoom);
-					// if (me.priorState.bounds !== me.mapState.bounds) me.map.setBounds(me.mapState.bounds);
 					if (me.priorState.heading !== me.mapState.heading) me.map.setHeading(me.mapState.heading);
 					if (me.priorState.mapTypeId !== me.mapState.mapTypeId) me.map.setMapTypeId(me.mapState.mapTypeId);
-					// if (me.priorState.projection !== me.mapState.projection) me.map.setProjection(me.mapState.projection);
 					if (me.priorState.streetView !== me.mapState.streetView) me.map.setStreetView(me.mapState.streetview);
 					if (me.priorState.tilt !== me.mapState.tilt) me.map.setTilt(me.mapState.tilt);
+					// if (me.priorState.projection !== me.mapState.projection) me.map.setProjection(me.mapState.projection);
+					// if (me.priorState.bounds !== me.mapState.bounds) me.map.setBounds(me.mapState.bounds);
 					// priorState.markers !== mapState.markers
-					setTimeout(resolve, 5000);
 				} catch (e) {
 					reject(e);
 				}
 			});
 		}
 		me.promiseChain = me.promiseChain.then(processUpdate);
-	}
-
-	/**
-	 * Get the current state of our google map
-	 *
-	 * @return {Object} all of the current properties of our google map.
-	 */
-	getMapState() {
-		return {
-			center: this.map.getCenter(),
-			zoom: this.map.getZoom(),
-			bounds: this.map.getBounds(),
-			heading: this.map.getHeading(),
-			mapTypeId: this.map.getMapTypeId(),
-			projection: this.map.getProjection(),
-			streetView: this.map.getStreetView(),
-			tilt: this.map.getTilt()
-			// markers: this.getMarkers()
-		};
 	}
 }
