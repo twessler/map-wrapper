@@ -1,7 +1,7 @@
 import Promise from "bluebird";
 import MapState from "./map-state";
-import MapTransition from "./map-transition";
-import MapGeocoder from "./map-geocoder";
+// import MapTransition from "./map-transition";
+// import MapGeocoder from "./map-geocoder";
 
 /**
  * Class for handling direct interactions with the google maps api.
