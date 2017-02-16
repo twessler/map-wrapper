@@ -4,7 +4,7 @@ const allowedKeys = ["center", "zoom", "bounds", "heading", "mapTypeId", "projec
 
 export default class MapState {
 	constructor(state) {
-		forIn(omit(pick(state, allowedKeys), isNull), (key, value) => { this[key] = value; });
+		forIn(omit(pick(state, allowedKeys), isNull), (value, key) => { this[key] = value; });
 	}
 
 	static getCurrent(map) {
