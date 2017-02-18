@@ -30,7 +30,7 @@ export default class MapAnimator {
 			// decelerating to zero velocity 
 			easeOutCubic: (t) => ((t - 1) * (t ** 2)) + 1,
 			// acceleration until halfway, then deceleration 
-			easeInOutCubic: (t) => t < .5 ? 4 * (t ** 3) : (t-1)*(2*t-2)*(2*t-2)+1,
+			easeInOutCubic: (t) => t < .5 ? 4 * (t ** 3) : (t - 1) * ((2 * t) - 2) * ((2 * t) - 2) + 1,
 			// accelerating from zero velocity 
 			easeInQuart: (t) => t ** 4,
 			// decelerating to zero velocity 
