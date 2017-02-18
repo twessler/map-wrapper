@@ -17,33 +17,33 @@ export default class MapAnimator {
 	// for the time being
 	static get FUNCTIONS() {
 		return {
-	  // no easing, no acceleration
-	  linear: function (t) { return t },
-	  // accelerating from zero velocity
-	  easeInQuad: function (t) { return t*t },
-	  // decelerating to zero velocity
-	  easeOutQuad: function (t) { return t*(2-t) },
-	  // acceleration until halfway, then deceleration
-	  easeInOutQuad: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
-	  // accelerating from zero velocity 
-	  easeInCubic: function (t) { return t*t*t },
-	  // decelerating to zero velocity 
-	  easeOutCubic: function (t) { return (--t)*t*t+1 },
-	  // acceleration until halfway, then deceleration 
-	  easeInOutCubic: function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 },
-	  // accelerating from zero velocity 
-	  easeInQuart: function (t) { return t*t*t*t },
-	  // decelerating to zero velocity 
-	  easeOutQuart: function (t) { return 1-(--t)*t*t*t },
-	  // acceleration until halfway, then deceleration
-	  easeInOutQuart: function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t },
-	  // accelerating from zero velocity
-	  easeInQuint: function (t) { return t*t*t*t*t },
-	  // decelerating to zero velocity
-	  easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
-	  // acceleration until halfway, then deceleration 
-	  easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t },
-	  default: easeInOutCubic
-	  }
+			// no easing, no acceleration
+			linear: (t) => t,
+			// accelerating from zero velocity
+			easeInQuad: (t) => t ** 2,
+			// decelerating to zero velocity
+			easeOutQuad: (t) => t * (2 - t),
+			// acceleration until halfway, then deceleration
+			easeInOutQuad: (t) => t < .5 ? 2 * (t ** 2) : ((4 - (2 * t)) * t) - 1,
+			// accelerating from zero velocity 
+			easeInCubic: (t) => t ** 3,
+			// decelerating to zero velocity 
+			easeOutCubic: (t) => ((t - 1) * (t ** 2)) + 1,
+			// acceleration until halfway, then deceleration 
+			easeInOutCubic: (t) => t < .5 ? 4 * (t ** 3) : (t-1)*(2*t-2)*(2*t-2)+1,
+			// accelerating from zero velocity 
+			easeInQuart: (t) => t ** 4,
+			// decelerating to zero velocity 
+			easeOutQuart: (t) => 1 - (t - 1) * (t ** 3),
+			// acceleration until halfway, then deceleration
+			easeInOutQuart: (t) => t < .5 ? 8 * (t ** 4) : 1 - (8 * (t - 1) * (t ** 3)),
+			// accelerating from zero velocity
+			easeInQuint: (t) => t ** 5,
+			// decelerating to zero velocity
+			easeOutQuint: (t) => 1 + ((t - 1) * (t ** 4)),
+			// acceleration until halfway, then deceleration 
+			easeInOutQuint: (t) => t < .5 ? 16 * (t ** 5) : 1 + (16 * (t - 1)* (t ** 4)),
+			default: easeInOutCubic
+		}
 	}
 }
