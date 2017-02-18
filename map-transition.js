@@ -1,7 +1,7 @@
-import _ from "lodash";
+import { forIn } from "lodash";
 import MapState from "./map-state";
 import MapAnimator from "./map-animator";
-
+/*
 // Placeholder for adding animation logic potentially
 export default class MapTransition {
 	static to(map, state, animation = MapAnimator.DEFAULT) {
@@ -17,5 +17,12 @@ export default class MapTransition {
 		}
 
 		_.forIn(stateChanges, processStateChange);
+======= */
+import Map from "./map";
+
+// Placeholder for adding animation logic potentially
+export default class MapTransition {
+	static to(map, state) {
+		forIn(MapState.updated(Map.currentState(map), state), Map.setValue.bind(null, map));
 	}
 }

@@ -1,7 +1,7 @@
 import Promise from "bluebird";
 import MapState from "./map-state";
 // import MapAnimation from "./map-animation";
-// import MapTransition from "./map-transition";
+import MapTransition from "./map-transition";
 // import MapGeocoder from "./map-geocoder";
 
 /**
@@ -10,6 +10,7 @@ import MapState from "./map-state";
 export default class MapWorker {
 
 	constructor(apiKey, mapId = "map", defaultState) {
+		this.map = {};
 		this.mapId = mapId;
 		this.apiKey = apiKey;
 		this.mapState = new MapState(defaultState);
@@ -36,8 +37,8 @@ export default class MapWorker {
 					this.map = new global.google.maps.Map(el, this.mapState);
 
 					// Testing if stuff works.  For the most part, it seems like it does.
-					// MapTransition.to(this.map, new MapState({ zoom: 7 }));
-					// this.geo = new MapGeocoder(this.map);
+					// MapTransition.to(map, new MapState({ zoom: 7 }));
+					// this.geo = new MapGeocoder(map);
 					resolve();
 				};
 				global.document.body.appendChild(script);
@@ -47,5 +48,16 @@ export default class MapWorker {
 		});
 
 		return this.promiseChain;
+	}
+
+	update(newState) {
+		function nextState(map, state) {
+			return new Promise((resolve) => {
+				MapTransition.to(map, new MapState(state));
+				resolve();
+			});
+		}
+
+		this.promiseChain = this.promiseChain.then(nextState.bind(null, this.map, newState));
 	}
 }
