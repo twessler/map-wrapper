@@ -1,9 +1,10 @@
 import _ from "lodash";
 import MapState from "./map-state";
+import MapAnimator from "./map-animator";
 
 // Placeholder for adding animation logic potentially
 export default class MapTransition {
-	static to(map, state) {
+	static to(map, state, animation = MapAnimator.DEFAULT) {
 		const stateChanges = MapState.updated(MapState.getCurrent(map), state);
 
 		function processStateChange(value, key) {

@@ -1,5 +1,6 @@
 import Promise from "bluebird";
 import MapState from "./map-state";
+// import MapAnimation from "./map-animation";
 // import MapTransition from "./map-transition";
 // import MapGeocoder from "./map-geocoder";
 
