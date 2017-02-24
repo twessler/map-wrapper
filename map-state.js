@@ -1,5 +1,5 @@
 import { chain, forIn, extend, isEqual, omitBy, cloneDeep, isNull } from "lodash";
-import Map from "./map";
+import MapWrapper from "./map-wrapper";
 
 export default class MapState {
 	constructor(stateHash) {
@@ -39,7 +39,7 @@ export default class MapState {
 	 */
 	static filterKeys(stateHash) {
 		return chain(cloneDeep(stateHash))
-					.pick(Map.getAlterableProperties())
+					.pick(MapWrapper.getAlterableProperties())
 					.omit(isNull)
 					.value();
 	}

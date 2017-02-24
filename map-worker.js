@@ -1,8 +1,10 @@
 import Promise from "bluebird";
+import MapWrapper from "./map-wrapper";
 import MapState from "./map-state";
 import MapTransition from "./map-transition";
 // import MapGeocoder from "./map-geocoder";
 
+global.MapWrapper = MapWrapper;
 global.MapTransition = MapTransition;
 
 /**
@@ -12,6 +14,7 @@ export default class MapWorker {
 
 	constructor(apiKey, mapId = "map", defaultState) {
 		this.map = {};
+		this.wrapper = {};
 		this.mapId = mapId;
 		this.apiKey = apiKey;
 		this.mapState = new MapState(defaultState);
@@ -36,11 +39,9 @@ export default class MapWorker {
 				script.onload = () => {
 					const el = global.document.getElementById(this.mapId);
 					this.map = new global.google.maps.Map(el, this.mapState);
-					global.map = this.map;
+					this.wrapper = new MapWrapper(this.map);
+					global.wrapper = this.wrapper;
 
-					// Testing if stuff works.  For the most part, it seems like it does.
-					// MapTransition.to(map, new MapState({ zoom: 7 }));
-					// this.geo = new MapGeocoder(map);
 					resolve();
 				};
 				global.document.body.appendChild(script);
