@@ -15,11 +15,11 @@ module.exports = {
 
 	module: {
 		rules: [
-			{
+			/*{
 				test: /\.(css|scss)$/, 
 				loader: ["style-loader", "css-loader", "sass-loader"], 
 				exclude: "/node_modules/"
-			},{
+			},*/{
 				test: /\.js$/, 
 				enforce: "pre", 
 				use: {

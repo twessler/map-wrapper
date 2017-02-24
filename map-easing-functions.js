@@ -1,21 +1,6 @@
-
-
-export default class MapAnimator {
-	constructor(options) {
-		this.duration = 1000;
-		this.easingFunction = options.easingFunction || MapAnimator.DEFAULT_EASING_FUNCTION
-	}
-
-	steps () {
-	}
-
-	static get DEFAULT() {
-		return function() {};
-	}
-
+export default class MapEasingFunctions {
 	// Borrowing these from https://gist.github.com/gre/1650294 
-	// for the time being
-	static get FUNCTIONS() {
+	static get ALL() {
 		return {
 			// no easing, no acceleration
 			linear: (t) => t,
@@ -45,5 +30,9 @@ export default class MapAnimator {
 			easeInOutQuint: (t) => t < .5 ? 16 * (t ** 5) : 1 + (16 * (t - 1)* (t ** 4)),
 			default: easeInOutCubic
 		}
+	}
+
+	static get DEFAULT() {
+		return MapEasingFunctions.ALL.default;
 	}
 }
