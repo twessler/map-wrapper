@@ -32,6 +32,7 @@ module.exports = {
                             "no-tabs": "off",
                             "max-len": "off",
                             "no-trailing-spaces": "off",
+                            "arrow-parens": "off",
                             indent: ["error", "tab"]
 						}
 					}

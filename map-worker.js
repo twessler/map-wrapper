@@ -3,6 +3,8 @@ import MapState from "./map-state";
 import MapTransition from "./map-transition";
 // import MapGeocoder from "./map-geocoder";
 
+global.MapTransition = MapTransition;
+
 /**
  * Class for handling direct interactions with the google maps api.
  */
@@ -34,6 +36,7 @@ export default class MapWorker {
 				script.onload = () => {
 					const el = global.document.getElementById(this.mapId);
 					this.map = new global.google.maps.Map(el, this.mapState);
+					global.map = this.map;
 
 					// Testing if stuff works.  For the most part, it seems like it does.
 					// MapTransition.to(map, new MapState({ zoom: 7 }));
